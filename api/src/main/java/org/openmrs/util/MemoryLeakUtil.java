@@ -17,7 +17,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.impl.SessionFactoryObjectFactory;
 
-import sun.net.www.http.KeepAliveCache;
+//import sun.net.www.http.KeepAliveCache;
+import org.jboss.util.TimedCachePolicy;
 
 /**
  * Utility functions to clean up causes of memory leakages.
@@ -60,13 +61,17 @@ public class MemoryLeakUtil {
 			log.info("Failed to shut-down MySQL Statement Cancellation Timer due to an IllegalAccessException", iae);
 		}
 	}
-	
+
+    /**
+    * This method doesn't seem to do anything and can be removed in newer versions
+     */
+    @Deprecated
 	public static void shutdownKeepAliveTimer() {
 		try {
 			final Field kac = HttpClient.class.getDeclaredField("kac");
 			
 			kac.setAccessible(true);
-			final Field keepAliveTimer = KeepAliveCache.class.getDeclaredField("keepAliveTimer");
+			final Field keepAliveTimer = TimedCachePolicy.class.getDeclaredField("resolutionTimer");
 			
 			keepAliveTimer.setAccessible(true);
 			
