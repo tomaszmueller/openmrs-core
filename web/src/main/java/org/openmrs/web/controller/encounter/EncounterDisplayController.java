@@ -387,6 +387,42 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
+		 * Indicates whether some other object is "equal to" this one.
+		 *
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		public boolean equals(FieldHolder other) {
+			if ((other == null) || (getClass() != other.getClass())) {
+				return false;
+			} // end if
+			else {
+				if (formField == null) {
+					if (other.getFormField() != null) {
+						return false;
+					}
+				} else if (!formField.equals(other.getFormField())) {
+					return false;
+				}
+				if (obs == null) {
+					if (other.getObs() != null) {
+						return false;
+					}
+				} else if (!obs.equals(other.getObs())) {
+					return false;
+				}
+				if (groupMemberConcepts == null) {
+					if (other.getGroupMemberConcepts() != null) {
+						return false;
+					}
+				} else if (!groupMemberConcepts.equals(other.getGroupMemberConcepts())) {
+					return false;
+				}
+			} // end else
+			
+			return true;
+		} //
+		
+		/**
 		 * Convenience method to get the label that this field should have. This is produced from
 		 * the formfield associated with this row
 		 *

@@ -319,6 +319,48 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	}
 	
 	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(PersonAttribute other) {
+		boolean result;
+		if ((other == null) || (getClass() != other.getClass())) {
+			result = false;
+		} // end if
+		else {
+			if (person == null) {
+				if (other.getPerson() != null) {
+					return false;
+				}
+			} else if (!person.equals(other.getPerson())) {
+				return false;
+			}
+			if (attributeType == null) {
+				if (other.getAttributeType() != null) {
+					return false;
+				}
+			} else if (!attributeType.equals(other.getAttributeType())) {
+				return false;
+			}
+			if (value == null) {
+				if (other.getValue() != null) {
+					return false;
+				}
+			} else if (!value.equals(other.getValue())) {
+				return false;
+			}
+			result = (personAttributeId == other.getPersonAttributeId());
+		} // end else
+		if (getUuid() == null) {
+			return false;
+		} else if (!getUuid().equals(other.getUuid())) {
+			return false;
+		}
+		return result;
+	} //
+	
+	/**
 	 * @since 1.5
 	 * @see org.openmrs.OpenmrsObject#getId()
 	 */

@@ -569,6 +569,92 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	}
 	
 	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	
+	public boolean equals(PersonName other) {
+		boolean result;
+		if ((other == null) || (getClass() != other.getClass())) {
+			result = false;
+		} // end if
+		else {
+			if (person == null) {
+				if (other.getPerson() != null) {
+					return false;
+				}
+			} else if (!person.equals(other.getPerson())) {
+				return false;
+			}
+			if (givenName == null) {
+				if (other.getGivenName() != null) {
+					return false;
+				}
+			} else if (!givenName.equals(other.getGivenName())) {
+				return false;
+			}
+			if (middleName == null) {
+				if (other.getMiddleName() != null) {
+					return false;
+				}
+			} else if (!middleName.equals(other.getMiddleName())) {
+				return false;
+			}
+			if (familyNamePrefix == null) {
+				if (other.getFamilyNamePrefix() != null) {
+					return false;
+				}
+			} else if (!familyNamePrefix.equals(other.getFamilyNamePrefix())) {
+				return false;
+			}
+			if (familyName == null) {
+				if (other.getFamilyName() != null) {
+					return false;
+				}
+			} else if (!familyName.equals(other.getFamilyName())) {
+				return false;
+			}
+			if (familyName2 == null) {
+				if (other.getFamilyName2() != null) {
+					return false;
+				}
+			} else if (!familyName2.equals(other.getFamilyName2())) {
+				return false;
+			}
+			if (familyNameSuffix == null) {
+				if (other.getFamilyNameSuffix() != null) {
+					return false;
+				}
+			} else if (!familyNameSuffix.equals(other.getFamilyNameSuffix())) {
+				return false;
+			}
+			if (degree == null) {
+				if (other.getDegree() != null) {
+					return false;
+				}
+			} else if (!degree.equals(other.getDegree())) {
+				return false;
+			}
+			if (format == null) {
+				if (other.getFormat() != null) {
+					return false;
+				}
+			} else if (!format.equals(other.getFormat())) {
+				return false;
+			}
+			result = (personNameId == other.getPersonNameId() && preferred == other.getPreferred());
+		} // end else
+		if (getUuid() == null) {
+			return false;
+		} else if (!getUuid().equals(other.getUuid())) {
+			return false;
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * @since 1.5
 	 * @see org.openmrs.OpenmrsObject#getId()
 	 */

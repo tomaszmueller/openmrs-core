@@ -235,6 +235,56 @@ public class PatientIdentifier extends BaseOpenmrsData implements java.io.Serial
 	}
 	
 	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(PatientIdentifier other) {
+		boolean result;
+		
+		if ((other == null) || (getClass() != other.getClass())) {
+			result = false;
+		} // end if
+		else {
+			if (patient == null) {
+				if (other.getPatient() != null) {
+					return false;
+				}
+			} else if (!patient.equals(other.getPatient())) {
+				return false;
+			}
+			if (identifier == null) {
+				if (other.getIdentifier() != null) {
+					return false;
+				}
+			} else if (!identifier.equals(other.getIdentifier())) {
+				return false;
+			}
+			if (identifierType == null) {
+				if (other.getIdentifierType() != null) {
+					return false;
+				}
+			} else if (!identifierType.equals(other.getIdentifierType())) {
+				return false;
+			}
+			if (location == null) {
+				if (other.getLocation() != null) {
+					return false;
+				}
+			} else if (!location.equals(other.getLocation())) {
+				return false;
+			}
+			result = (patientIdentifierId == other.getPatientIdentifierId() && preferred == other.getPreferred());
+		} // end else
+		if (getUuid() == null) {
+			return false;
+		} else if (!getUuid().equals(other.getUuid())) {
+			return false;
+		}
+		return result;
+	}
+	
+	/**
 	 * @since 1.5
 	 * @see org.openmrs.OpenmrsObject#getId()
 	 */

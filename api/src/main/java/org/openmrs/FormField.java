@@ -132,6 +132,65 @@ public class FormField extends BaseOpenmrsMetadata implements java.io.Serializab
 		
 	}
 	
+	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(FormField other) {
+		boolean result;
+		if ((other == null) || (getClass() != other.getClass())) {
+			result = false;
+		} // end if
+		else {
+			if (formFieldId == null) {
+				if (other.getFormFieldId() != null) {
+					return false;
+				}
+			} else if (!formFieldId.equals(other.getFormFieldId())) {
+				return false;
+			}
+			if (parent == null) {
+				if (other.getParent() != null) {
+					return false;
+				}
+			} else if (!parent.equals(other.getParent())) {
+				return false;
+			}
+			if (form == null) {
+				if (other.getForm() != null) {
+					return false;
+				}
+			} else if (!form.equals(other.getForm())) {
+				return false;
+			}
+			if (field == null) {
+				if (other.getField() != null) {
+					return false;
+				}
+			} else if (!field.equals(other.getField())) {
+				return false;
+			}
+			if (fieldPart == null) {
+				if (other.getFieldPart() != null) {
+					return false;
+				}
+			} else if (!fieldPart.equals(other.getFieldPart())) {
+				return false;
+			}
+			result = (formFieldId == other.getFormFieldId() && fieldNumber == other.getFieldNumber()
+			        && pageNumber == other.getPageNumber() && minOccurs == other.getMinOccurs()
+			        && maxOccurs == other.getMaxOccurs() && required == other.getRequired() && sortWeight == other
+			        .getSortWeight());
+		} // end else
+		if (getUuid() == null) {
+			return false;
+		} else if (!getUuid().equals(other.getUuid())) {
+			return false;
+		}
+		return result;
+	}
+	
 	// Property accessors
 	
 	/**
