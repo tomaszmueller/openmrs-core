@@ -264,6 +264,7 @@ public class HibernateAdministrationDAO implements AdministrationDAO, Applicatio
 		PersistentClass persistentClass = configuration.getClassMapping(aClass.getName().split("_")[0]);
 		if (persistentClass == null) {
 			log.error("Uh oh, couldn't find a class in the hibernate configuration named: " + aClass.getName());
+			return -1;
 		}
 		int fieldLength;
 		try {
