@@ -11,9 +11,12 @@ package org.openmrs.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -32,6 +35,7 @@ import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.LogManager;
@@ -423,6 +427,36 @@ public final class Listener extends ContextLoader implements ServletContextListe
 						}
 					}
 				}
+			}
+			try {
+				List<String> locales = new ArrayList<String>();
+				locales.add("");
+				locales.add("_de");
+				locales.add("_en_GB");
+				locales.add("_es");
+				locales.add("_fa");
+				locales.add("_fr");
+				locales.add("_hi");
+				locales.add("_in_ID");
+				locales.add("_it");
+				locales.add("_kh");
+				locales.add("_pt");
+				locales.add("_si");
+				locales.add("_zh_CN");
+				for (String locale : locales) {
+					InputStream resourceStream = getClass().getClassLoader().getResourceAsStream(
+					    "/messages" + locale + ".properties");
+					OutputStream fileStream = new FileOutputStream(new File(realPath + "/WEB-INF/messages" + locale
+					        + ".properties"));
+					IOUtils.copy(resourceStream, fileStream);
+				}
+				
+			}
+			catch (FileNotFoundException e) {
+
+			}
+			catch (IOException e) {
+
 			}
 			
 		}
